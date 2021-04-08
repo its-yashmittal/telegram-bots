@@ -20,34 +20,22 @@ def message(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Your movie details are: \n")
     for field in info:
         if field=='genres':
-            print(type(info[field]))
             category = "Genres:"
             for i in range(0, len(info[field])):
                 category = category + "\n" + str(info[field][i])
             context.bot.send_message(chat_id=update.effective_chat.id, text=category)    
         elif field=='cast':
-            print(type(info[field]))
             stars = "Cast:"
             length = len(info[field])-3
-            print("length: " + str(length+4))
             for i in range (0, length):
-                print("i+3"+str(i+3))
-                print("length: " + str(length))
                 if info[field][i]=='':
                     stars = stars + '\n'
                 elif info[field][i+3]=='':
                     stars = stars + info[field][i] + " as " + info[field][i+1] +"/" + info[field][i+2] + "\n"
-                    #info[field].pop(i+1)
-                    #info[field].pop(i+2)
-                    #length = length - 2
-                    print("i before: "+str(i))
                     i = i - 2
-                    print("i after: "+str(i))
                     continue
                 elif info[field][i+2]=='':
                     stars = stars + info[field][i] + " as " + info[field][i+1] +"\n"
-                    #info[field].pop(i+1)
-                    #length = length - 1
                     i = i-1
                     continue
                     
@@ -63,6 +51,7 @@ def audio_msg(update, context):
     audio_file.download('voice.ogg')
     transcription = audio_processor()
     print("calling scraper with " + transcription)
+    context.bot.send_message(chat_id=update.effective_chat.id, text="You just said "+transcription+" in the voice note!")
     info = scraper(transcription)
     context.bot.send_message(chat_id=update.effective_chat.id, text="Your movie details are: \n")
     for field in info:

@@ -31,5 +31,3 @@ def scraper(movie_name):
     movie_info.update({'cast':cast_list})
     print(movie_info)
     return movie_info
-
-scraper("avengers")
