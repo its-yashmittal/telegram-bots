@@ -1,4 +1,4 @@
-bot_token ="1750591707:AAG6fYZzz0lEyuybZOUn47Og67Z84bkDxNw"
+bot_token ="BOT_TOKEN_HERE"
 from telegram.ext import MessageHandler, CommandHandler, Filters, Updater, updater
 from translate import translatorFn 
 from speechToText import audio_processor
